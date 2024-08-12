@@ -298,6 +298,7 @@ module Pusher
     # @raise [Pusher::HTTPError] Error raised inside http client. The original error is wrapped in error.original_error
     #
     def trigger(channels, event_name, data, params = {})
+      puts "Pusher called: #{event_name}"
       post('/events', trigger_params(channels, event_name, data, params))
     end
 
@@ -313,6 +314,7 @@ module Pusher
     # @raise [Pusher::HTTPError] Error raised inside http client. The original error is wrapped in error.original_error
     #
     def trigger_batch(*events)
+      puts "Pusher batch called: #{events.flatten[0][:name]} with length #{events.count}"
       post('/batch_events', trigger_batch_params(events.flatten))
     end
 
